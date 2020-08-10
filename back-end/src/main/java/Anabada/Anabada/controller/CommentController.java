@@ -28,7 +28,7 @@ public class CommentController {
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @PostMapping("/post/{id}/comment/{commentId}")
+    @PutMapping("/post/{id}/comment/{commentId}")
     public Comment createComment(@PathVariable Long id, @PathVariable Long commentId,
                                  @RequestBody Comment comment){
         Post post=postService.getPostById(id);
@@ -41,7 +41,7 @@ public class CommentController {
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @PutMapping("/post/{id}/comment")
+    @PostMapping("/post/{id}/comment")
     public Comment updateComment(@PathVariable Long id,@RequestBody Comment comment){
         Post post=postService.getPostById(id);
         comment.setPost(post);
