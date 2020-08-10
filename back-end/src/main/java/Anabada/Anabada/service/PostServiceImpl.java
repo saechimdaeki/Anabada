@@ -1,7 +1,7 @@
 package Anabada.Anabada.service;
 
 import Anabada.Anabada.exception.PostNotFoundException;
-import Anabada.Anabada.model.Post;
+import Anabada.Anabada.domain.Post;
 import Anabada.Anabada.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -11,25 +11,27 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@Transactional
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class PostServiceImpl implements PostService{
 
     private final PostRepository postRepository;
 
     @Override
+    @Transactional
     public Post createPost(Post post) {
         return postRepository.save(post);
     }
 
     @Override
+    @Transactional
     public Post updatePost(Post post) {
         Optional<Post> postdb=this.postRepository.findById(post.getId());
         if(postdb.isPresent()){
             Post postUpdate=postdb.get();
             postUpdate.setId(post.getId());
-            postUpdate.setName(post.getName());
-            postUpdate.setDescription(post.getDescription());
+            postUpdate.setTitle(post.getTitle());
+            postUpdate.setContent(post.getContent());
             postRepository.save(postUpdate);
             return postUpdate;
         }else{
@@ -54,6 +56,7 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
+    @Transactional
     public void deletePost(long id) {
         Optional<Post> postDb=this.postRepository.findById(id);
         if(postDb.isPresent()){
