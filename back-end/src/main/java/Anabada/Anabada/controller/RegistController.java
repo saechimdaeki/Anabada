@@ -17,7 +17,7 @@ public class RegistController {
     private final AccountRepository accountRepository;
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @PostMapping("/regist")
+    @PostMapping("/register")
     @ResponseBody
     public String register(@RequestBody Account newAccount){
         String email= newAccount.getEmail();
