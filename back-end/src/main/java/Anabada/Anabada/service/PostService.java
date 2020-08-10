@@ -1,6 +1,6 @@
 package Anabada.Anabada.service;
 
-import Anabada.Anabada.model.Post;
+import Anabada.Anabada.domain.Post;
 
 import java.util.List;
 
@@ -10,5 +10,6 @@ public interface PostService {
     List<Post> getAllPosts();
     Post getPostById(long id);
     void deletePost(long id);
+
 
 }

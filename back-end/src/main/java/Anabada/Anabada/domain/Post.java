@@ -1,4 +1,4 @@
-package Anabada.Anabada.model;
+package Anabada.Anabada.domain;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -15,22 +15,30 @@ import java.util.Date;
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "post_id")
     private long id;
 
     @Column(name = "name")
-    private String name;
+    private String title;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "content")
+    private String content;
 
-    @Column(name = "price")
-    private BigDecimal price;
+  //  @Column(name = "price")
+   // private BigDecimal price;
 
-    @CreationTimestamp
-    private Date createdDate;
+    @Column(name = "writer")
+    private String writer;
 
-    @CreationTimestamp
-    private Date updateDate;
+//    @CreationTimestamp
+  //  private Date createdDate;
+
+   // @CreationTimestamp
+   // private Date updateDate;
+
+
+
+
 
 
 }
