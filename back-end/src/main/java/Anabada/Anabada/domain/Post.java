@@ -7,7 +7,9 @@ import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "posts")
@@ -18,18 +20,21 @@ public class Post {
     @Column(name = "post_id")
     private long id;
 
-    @Column(name = "name")
+    @Column(name = "title")
     private String title;
 
     @Column(name = "content")
     private String content;
 
-  //  @Column(name = "price")
-   // private BigDecimal price;
+    @Column(name = "price")
+    private BigDecimal price;
 
     @Column(name = "writer")
     private String writer;
 
+
+   // @OneToMany(mappedBy = "post")
+   // private List<Comment> comments=new ArrayList<>();
 //    @CreationTimestamp
   //  private Date createdDate;
 
