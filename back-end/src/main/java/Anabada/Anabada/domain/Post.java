@@ -20,7 +20,7 @@ public class Post {
     @Column(name = "post_id")
     private long id;
 
-    @Column(name = "name")
+    @Column(name = "title")
     private String title;
 
     @Column(name = "content")
