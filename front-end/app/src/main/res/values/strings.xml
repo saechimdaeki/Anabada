@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Anabada</string>
+    <string name="myip">192.168.35.135</string>
 </resources>

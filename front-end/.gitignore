@@ -8,7 +8,7 @@
 *.aar
 *.ap_
 *.aab
-
+/app/src/main/res/values/strings.xml
 # Files for the ART/Dalvik VM
 *.dex
 
