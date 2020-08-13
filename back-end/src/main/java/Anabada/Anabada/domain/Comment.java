@@ -9,7 +9,9 @@ import javax.persistence.*;
 @Table(name = "comment")
 @Getter @Setter
 public class Comment {
+
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Column(name = "comment_id")
     private Long id;
 

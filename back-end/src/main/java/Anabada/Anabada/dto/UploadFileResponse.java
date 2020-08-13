@@ -4,6 +4,7 @@ public class UploadFileResponse {
     private String fileName;
     private String fileDownloadUri;
     private String fileType;
+
     private long post_id;
     private long size;
 
@@ -22,6 +23,7 @@ public class UploadFileResponse {
     public void setPost_id(long post_id) {
         this.post_id = post_id;
     }
+
 
     public String getFileName() {
         return fileName;

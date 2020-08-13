@@ -1,6 +1,7 @@
 package Anabada.Anabada.controller;
 
 import Anabada.Anabada.domain.AttachmentFile;
+
 import Anabada.Anabada.domain.FileUrl;
 import Anabada.Anabada.domain.Post;
 import Anabada.Anabada.dto.UploadFileResponse;
@@ -8,6 +9,7 @@ import Anabada.Anabada.repository.AttachmentFileRepository;
 import Anabada.Anabada.repository.FileUriRepository;
 import Anabada.Anabada.service.AttachmentFileService;
 import Anabada.Anabada.service.PostService;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
@@ -20,13 +22,16 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.Arrays;
 import java.util.List;
+
 import java.util.Optional;
+
 import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
 public class FileController {
     private final AttachmentFileService attachmentFileService;
+
     private final PostService postService;
     private final AttachmentFileRepository attachmentFileRepository;
     private final FileUriRepository fileUriRepository;
@@ -43,10 +48,12 @@ public class FileController {
         AttachmentFile dbFile = attachmentFileService.storeFile(file);
         dbFile.setPost(post);
         attachmentFileRepository.save(dbFile);
+
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/downloadFile/")
                 .path(dbFile.getId().toString())
                 .toUriString();
+
         UploadFileResponse tmp=new UploadFileResponse(dbFile.getFileName(), fileDownloadUri,
                 file.getContentType(),post.getId(), file.getSize());
         FileUrl fileUrl = new FileUrl();
@@ -75,6 +82,7 @@ public class FileController {
 
     @GetMapping("/post/download/{fileId}")
     public ResponseEntity<Resource> downloadFile(@PathVariable Long postId,@PathVariable Long fileId) {
+
         AttachmentFile dbFile = attachmentFileService.getFile(fileId);
 
         return ResponseEntity.ok()
@@ -82,6 +90,7 @@ public class FileController {
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + dbFile.getFileName() + "\"")
                 .body(new ByteArrayResource(dbFile.getData()));
     }
+
 
     @GetMapping("/post/{postid}/download")
     public List<FileUrl> getAllFilePost(@PathVariable Long postid){
