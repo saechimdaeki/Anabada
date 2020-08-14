@@ -1,7 +1,9 @@
 package Anabada.Anabada.controller;
 
 
+import Anabada.Anabada.domain.Comment;
 import Anabada.Anabada.domain.Post;
+import Anabada.Anabada.repository.CommentRepository;
 import Anabada.Anabada.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,6 +17,7 @@ import java.util.List;
 public class PostController {
 
     private final PostService postService;
+    private final CommentRepository commentRepository;
 
     @GetMapping("/post")
     public ResponseEntity<List<Post>> getAllPosts(){
@@ -27,8 +30,11 @@ public class PostController {
     }
 
     @GetMapping("/post/{id}")
-    public ResponseEntity<Post> getPostById(@PathVariable long id){
-        return ResponseEntity.ok().body(postService.getPostById(id));
+    public Post getPostById(@PathVariable long id){
+        List<Comment> comment=commentRepository.findCommentsByPostid(id);
+        Post post=postService.getPostById(id);
+        post.setComments(comment);
+        return post;
     }
 
     @PutMapping("/post/{id}")

@@ -33,13 +33,16 @@ public class Post {
     private String writer;
 
 
-   // @OneToMany(mappedBy = "post")
-   // private List<Comment> comments=new ArrayList<>();
-//    @CreationTimestamp
-  //  private Date createdDate;
+    @Transient
+    @OneToMany  (mappedBy = "postid")
+    private List<Comment> comments=new ArrayList<>();
 
-   // @CreationTimestamp
-   // private Date updateDate;
+    @CreationTimestamp
+   private Date createdDate;
+
+    @CreationTimestamp
+    private Date updateDate;
+
 
 
 

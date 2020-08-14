@@ -25,9 +25,7 @@ public class Comment {
     @Column(name = "postid")
     private Long postid;
 
-/*
-    @ManyToOne
-    @JoinColumn(name = "post_id")
-    private Post post;
- */
+
+
+
 }
