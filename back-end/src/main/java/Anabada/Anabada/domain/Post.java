@@ -33,8 +33,9 @@ public class Post {
     private String writer;
 
 
-    @Transient
-    @OneToMany  (mappedBy = "postid")
+   // @Transient
+    @OneToMany(fetch = FetchType.EAGER)
+    @Column(name = "comments")
     private List<Comment> comments=new ArrayList<>();
 
     @CreationTimestamp
