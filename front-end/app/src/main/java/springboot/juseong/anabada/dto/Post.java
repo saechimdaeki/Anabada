@@ -48,4 +48,11 @@ public class Post {
     public void setWriter(String writer) {
         this.writer = writer;
     }
+
+    public Post(String title, String content, BigDecimal price, String writer) {
+        this.title = title;
+        this.content = content;
+        this.price = price;
+        this.writer = writer;
+    }
 }

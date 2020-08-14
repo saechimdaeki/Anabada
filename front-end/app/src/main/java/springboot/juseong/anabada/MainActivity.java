@@ -1,50 +1,78 @@
 package springboot.juseong.anabada;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+
 import android.util.Log;
-import android.widget.TextView;
+import android.view.MenuItem;
 
-import org.w3c.dom.Text;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.List;
 
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 import springboot.juseong.anabada.dto.Post;
-import springboot.juseong.anabada.retrofit2.RetrofitFactory;
-import springboot.juseong.anabada.retrofit2.RetrofitService;
+import springboot.juseong.anabada.screen.frag1;
+import springboot.juseong.anabada.screen.frag2;
 
 public class MainActivity extends AppCompatActivity {
-
+    private BottomNavigationView bottomNavigationView;
+    private FragmentManager fm;
+    private FragmentTransaction ft;
+    private frag1 frag1;
+    private frag2 frag2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final TextView textView=findViewById(R.id.text123);
-        RetrofitService retrofitService= RetrofitFactory.create();
-        retrofitService.getAllPosts().enqueue(new Callback<List<Post>>() {
-            @Override
-            public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
-                List<Post> model=response.body();
-                for(int i=0; i<model.size(); i++)
-                {
-                    textView.append("Id: "+model.get(i).getId()+"\n");
-                    textView.append("title: "+model.get(i).getTitle()+"\n");
-                    textView.append("content: "+model.get(i).getContent()+"\n");
-                    textView.append("price: "+model.get(i).getPrice()+"\n");
-                    textView.append("writer: "+model.get(i).getWriter()+"\n");
-                    textView.append("-----------------------------------\n");
+
+        bottomNavigationView=findViewById(R.id.bottomNavi);
+        bottomNavigationView.setOnNavigationItemReselectedListener(
+                new BottomNavigationView.OnNavigationItemReselectedListener() {
+                    @Override
+                    public void onNavigationItemReselected(@NonNull MenuItem item) {
+                        switch (item.getItemId()){
+                            case R.id.action_home:
+                                frag1=new frag1();
+                                setfrag(0);
+                                break;
+                            case R.id.action_write:
+                                frag2=new frag2();
+                                setfrag(1);
+                                break;
+                        }
+                    }
                 }
-            }
+        );
+        frag1=new frag1();
+        frag2=new frag2();
+        setfrag(0);
 
-            @Override
-            public void onFailure(Call<List<Post>> call, Throwable t) {
-                Log.e("오류",call.request().url().toString());
 
-            }
-        });
+
+
+
+
+
+    }
+    public void setfrag(int n){
+       fm=getSupportFragmentManager();
+       ft=fm.beginTransaction();
+       switch (n){
+           case 0:
+               frag1=new frag1();
+               ft.replace(R.id.main_frame,frag1);
+               ft.commit();
+               break;
+           case 1:
+               frag2=new frag2();
+               ft.replace(R.id.main_frame,frag2);
+               ft.commit();
+               break;
+       }
     }
 }
