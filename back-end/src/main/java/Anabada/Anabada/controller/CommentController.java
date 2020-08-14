@@ -23,16 +23,15 @@ public class CommentController {
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/post/{id}/comment")
     public List<Comment> getComments(@PathVariable Long id){
-        Post post=postService.getPostById(id);
-        return commentRepository.findCommentsByPost(post);
+        return commentRepository.findCommentsByPostid(id);
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PutMapping("/post/{id}/comment/{commentId}")
     public Comment createComment(@PathVariable Long id, @PathVariable Long commentId,
                                  @RequestBody Comment comment){
-        Post post=postService.getPostById(id);
-        comment.setPost(post);
+
+        comment.setPostid(id);
         Comment newCom=commentRepository.findById(commentId).get();
         newCom.setTitle(comment.getTitle());
         newCom.setContent(comment.getContent());
@@ -44,7 +43,7 @@ public class CommentController {
     @PostMapping("/post/{id}/comment")
     public Comment updateComment(@PathVariable Long id,@RequestBody Comment comment){
         Post post=postService.getPostById(id);
-        comment.setPost(post);
+        comment.setPostid(id);
         commentRepository.save(comment);
         return comment;
     }

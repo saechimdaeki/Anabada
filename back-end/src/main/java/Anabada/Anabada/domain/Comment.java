@@ -22,8 +22,12 @@ public class Comment {
     @Column(name = "writer")
     private String writer;
 
+    @Column(name = "postid")
+    private Long postid;
 
+/*
     @ManyToOne
     @JoinColumn(name = "post_id")
     private Post post;
+ */
 }
