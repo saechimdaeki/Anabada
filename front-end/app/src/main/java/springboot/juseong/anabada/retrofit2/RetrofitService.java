@@ -21,5 +21,7 @@ public interface RetrofitService {
     Call<Post> getPostById(@Path("postid") long id);
 
     @GET("/post/{postid}/download")
-    Call<List<FileUrl>> getAllFile(@Path("postid") Long fileId);
+    Call<List<FileUrl>> getAllFile(@Path("postid") Long postid);
+
+
 }

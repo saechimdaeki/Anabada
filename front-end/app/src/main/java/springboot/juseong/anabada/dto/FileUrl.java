@@ -8,13 +8,14 @@ public class FileUrl {
     private String downloaduri;
     private long size;
     private Long postid;
-    private byte[] data;
 
-    public long getId() {
+    private String data;
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -42,19 +43,19 @@ public class FileUrl {
         this.size = size;
     }
 
-    public long getPostid() {
+    public Long getPostid() {
         return postid;
     }
 
-    public void setPostid(long postid) {
+    public void setPostid(Long postid) {
         this.postid = postid;
     }
 
-    public byte[] getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(byte[] data) {
+    public void setData(String data) {
         this.data = data;
     }
 }

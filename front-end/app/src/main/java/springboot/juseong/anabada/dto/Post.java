@@ -2,6 +2,7 @@ package springboot.juseong.anabada.dto;
 
 import androidx.annotation.Nullable;
 
+import java.io.File;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -14,6 +15,7 @@ public class Post {
 
     @Nullable
     private List<Comment> comments;
+
 
 
 

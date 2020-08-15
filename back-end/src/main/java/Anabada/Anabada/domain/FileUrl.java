@@ -29,7 +29,6 @@ public class FileUrl {
     private Long postid;
 
     @Lob
-    @JsonIgnore
     private byte[] data;
 
 
