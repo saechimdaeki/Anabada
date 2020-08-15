@@ -64,6 +64,7 @@ public class FileController {
         fileUrl.setFileName(dbFile.getFileName());
         fileUrl.setPostid(post.getId());
         fileUrl.setSize(file.getSize());
+        fileUrl.setData(dbFile.getData());
         fileUriRepository.save(fileUrl);
         return tmp;
     }
@@ -101,39 +102,19 @@ public class FileController {
         return fileUriRepository.findFileUrlByPostid(postid);
     }
 
-
     /**
      * test
-     * @param fileName
-     * @param request
-     * @return
      */
-    /*
-    @GetMapping("/downloadFile/{fileName:.+}")
-    public ResponseEntity<Resource> downloadFile(@PathVariable String fileName, HttpServletRequest request){
-        // Load file as Resource
-        Resource resource = attachmentFileService.loadFileAsResource(fileName);
-
-        // Try to determine file's content type
-        String contentType = null;
-        try {
-            contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
-        } catch (IOException ex) {
-        }
-
-        // Fallback to the default content type if type could not be determined
-        if(contentType == null) {
-            contentType = "application/octet-stream";
-        }
-
+    @GetMapping("download/{fileId}")
+    public ResponseEntity<Resource> downloadFile123(@PathVariable Long fileId) {
+        AttachmentFile dbFile = attachmentFileService.getFile(fileId);
         return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType(contentType))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
-                .body(resource);
+                .contentType(MediaType.parseMediaType(dbFile.getFileType()))
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + dbFile.getFileName() + "\"")
+                .body(new ByteArrayResource(dbFile.getData()));
     }
 
 
-     */
 
 
 }

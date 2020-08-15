@@ -1,23 +1,12 @@
 package springboot.juseong.anabada.dto;
 
-import androidx.annotation.Nullable;
 
-import java.math.BigDecimal;
-import java.util.List;
-import java.util.Optional;
-
-public class Post {
+public class Comment {
     private long id;
     private String title;
     private String content;
-    private BigDecimal price;
     private String writer;
-
-    @Nullable
-    private List<Comment> comments;
-
-    @Nullable
-    private List<file> fiels;
+    private long postid;
 
     public long getId() {
         return id;
@@ -43,14 +32,6 @@ public class Post {
         this.content = content;
     }
 
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
     public String getWriter() {
         return writer;
     }
@@ -59,10 +40,11 @@ public class Post {
         this.writer = writer;
     }
 
-    public Post(String title, String content, BigDecimal price, String writer) {
-        this.title = title;
-        this.content = content;
-        this.price = price;
-        this.writer = writer;
+    public long getPostid() {
+        return postid;
+    }
+
+    public void setPostid(long postid) {
+        this.postid = postid;
     }
 }

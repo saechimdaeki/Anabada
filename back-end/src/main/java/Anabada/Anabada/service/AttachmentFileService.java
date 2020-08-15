@@ -21,9 +21,7 @@ public class AttachmentFileService {
             if(fileName.contains("..")) {
                 throw new FileStorageException("실패" + fileName);
             }
-
             AttachmentFile dbFile = new AttachmentFile(fileName, file.getContentType(), file.getBytes());
-
             return attachmentFileRepository.save(dbFile);
         } catch (IOException ex) {
             throw new FileStorageException("저장실패 " + fileName + ". 다시 한번해봐용", ex);

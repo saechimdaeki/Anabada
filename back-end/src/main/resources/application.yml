@@ -23,6 +23,7 @@ spring:
       max-request-size: 215MB
 
 
+
 logging:
   level:
     org.hibernate.SQL: debug
