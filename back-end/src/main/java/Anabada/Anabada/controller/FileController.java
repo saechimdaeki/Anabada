@@ -6,7 +6,6 @@ import Anabada.Anabada.domain.FileUrl;
 import Anabada.Anabada.domain.Post;
 import Anabada.Anabada.dto.UploadFileResponse;
 import Anabada.Anabada.repository.AttachmentFileRepository;
-import Anabada.Anabada.repository.FileUriRepository;
 import Anabada.Anabada.service.AttachmentFileService;
 import Anabada.Anabada.service.FileUriService;
 import Anabada.Anabada.service.PostService;
@@ -21,17 +20,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.imageio.ImageIO;
-import javax.servlet.http.HttpServletRequest;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 
-import java.util.Optional;
+
 
 import java.util.stream.Collectors;
 
@@ -107,6 +99,13 @@ public class FileController {
         return fileUriService.findAllFileUrl(postid);
     }
 
+
+
+
+    /**
+     * post id값에 매핑된 fileid값을 명시적으로 지정하여 해당파일수정
+     */
+
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PutMapping("/post/{id}/upload/{fileid}")
     public UploadFileResponse updateFile(@PathVariable Long id,@RequestParam("file") MultipartFile file, @PathVariable Long fileid) {
@@ -128,7 +127,7 @@ public class FileController {
         fileUrl.setPostid(post.getId());
         fileUrl.setSize(file.getSize());
         fileUrl.setData(dbFile.getData());
-        fileUriService.uploadFile(fileUrl);
+        fileUriService.updateFile(fileUrl);
         return tmp;
     }
 
