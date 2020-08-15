@@ -37,7 +37,6 @@ public class frag1 extends Fragment {
         View view = inflater.inflate(R.layout.frag1, container, false);
         final TextView text=view.findViewById(R.id.textPost);
         ImageView imageView=view.findViewById(R.id.image);
-        Glide.with(getActivity()).load("http://localhost:8080/post/download/2").error(R.drawable.ic_home).into(imageView);
         RetrofitService retrofitService= RetrofitFactory.create();
         retrofitService.getAllPosts().enqueue(new Callback<List<Post>>() {
             @Override
@@ -46,7 +45,7 @@ public class frag1 extends Fragment {
                 if(model.size()==0)
                 {
                     text.append("글이 아무것도 존재하지 않습니다\n");
-                }else {
+                }else{
                     for (int i = 0; i < model.size(); i++) {
                         text.append("Id: " + model.get(i).getId() + "\n");
                         text.append("title: " + model.get(i).getTitle() + "\n");
@@ -56,6 +55,7 @@ public class frag1 extends Fragment {
                         text.append("-----------------------------------\n");
                     }
                 }
+
             }
             @Override
             public void onFailure(Call<List<Post>> call, Throwable t) {

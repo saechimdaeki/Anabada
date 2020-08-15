@@ -1,5 +1,6 @@
 package Anabada.Anabada.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,6 +29,7 @@ public class FileUrl {
     private Long postid;
 
     @Lob
+    @JsonIgnore
     private byte[] data;
 
 

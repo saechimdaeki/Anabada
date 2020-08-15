@@ -18,6 +18,7 @@ import retrofit2.Response;
 import springboot.juseong.anabada.dto.Post;
 import springboot.juseong.anabada.screen.frag1;
 import springboot.juseong.anabada.screen.frag2;
+import springboot.juseong.anabada.screen.frag3;
 
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private FragmentTransaction ft;
     private frag1 frag1;
     private frag2 frag2;
+    private frag3 frag3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
                             case R.id.action_write:
                                 frag2=new frag2();
                                 setfrag(1);
+                                break;
+                            case R.id.action_test:
+                                frag3=new frag3();
+                                setfrag(2);
                                 break;
                         }
                     }
@@ -64,6 +70,11 @@ public class MainActivity extends AppCompatActivity {
            case 1:
                frag2=new frag2();
                ft.replace(R.id.main_frame,frag2);
+               ft.commit();
+               break;
+           case 2:
+               frag3=new frag3();
+               ft.replace(R.id.main_frame,frag3);
                ft.commit();
                break;
        }

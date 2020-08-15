@@ -33,8 +33,6 @@ public class PostController {
 
     @PostMapping("/post")
     public ResponseEntity<Post> createPost(@RequestBody Post post){
-      //  List<AttachmentFile> files= attachmentFileRepository.findAllById(getPostById(post.getId()));
-       // attachmentFileRepository.save(attachmentFile);
 
         return ResponseEntity.ok().body(this.postService.createPost(post));
     }

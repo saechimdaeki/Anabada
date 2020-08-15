@@ -4,7 +4,6 @@ import androidx.annotation.Nullable;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Optional;
 
 public class Post {
     private long id;
@@ -16,8 +15,18 @@ public class Post {
     @Nullable
     private List<Comment> comments;
 
+
+
     @Nullable
-    private List<file> fiels;
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(@Nullable List<Comment> comments) {
+        this.comments = comments;
+    }
+
+
 
     public long getId() {
         return id;

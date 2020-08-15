@@ -20,9 +20,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 
@@ -105,14 +108,7 @@ public class FileController {
     /**
      * test
      */
-    @GetMapping("download/{fileId}")
-    public ResponseEntity<Resource> downloadFile123(@PathVariable Long fileId) {
-        AttachmentFile dbFile = attachmentFileService.getFile(fileId);
-        return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType(dbFile.getFileType()))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + dbFile.getFileName() + "\"")
-                .body(new ByteArrayResource(dbFile.getData()));
-    }
+
 
 
 

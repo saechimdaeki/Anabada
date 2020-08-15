@@ -2,12 +2,12 @@ package springboot.juseong.anabada.dto;
 
 
 
-public class file {
-    private long id;
+public class FileUrl {
+    private Long id;
     private String fileName;
-    private String downloadURI;
+    private String downloaduri;
     private long size;
-    private long postid;
+    private Long postid;
     private byte[] data;
 
     public long getId() {
@@ -26,12 +26,12 @@ public class file {
         this.fileName = fileName;
     }
 
-    public String getDownloadURI() {
-        return downloadURI;
+    public String getDownloaduri() {
+        return downloaduri;
     }
 
-    public void setDownloadURI(String downloadURI) {
-        this.downloadURI = downloadURI;
+    public void setDownloaduri(String downloaduri) {
+        this.downloaduri = downloaduri;
     }
 
     public long getSize() {
