@@ -11,7 +11,6 @@ import javax.persistence.*;
 @Getter @Setter
 public class AttachmentFile {
     @Id
-
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long id;
@@ -24,10 +23,8 @@ public class AttachmentFile {
     private byte[] data;
 
 
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "post_id")
-    private Post post;
+    @Column(name = "postid")
+    private Long postid;
 
 
 

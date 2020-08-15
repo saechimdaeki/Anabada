@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface FileUriRepository extends JpaRepository<FileUrl,Long> {
-    List<FileUrl> findFileUrlByPost(Post post);
+    List<FileUrl> findFileUrlByPostid(Long id);
 }

@@ -5,11 +5,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -33,20 +36,26 @@ public class frag1 extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frag1, container, false);
         final TextView text=view.findViewById(R.id.textPost);
+        ImageView imageView=view.findViewById(R.id.image);
         RetrofitService retrofitService= RetrofitFactory.create();
         retrofitService.getAllPosts().enqueue(new Callback<List<Post>>() {
             @Override
             public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
                 List<Post> model=response.body();
-                for(int i=0; i<model.size(); i++)
+                if(model.size()==0)
                 {
-                    text.append("Id: "+model.get(i).getId()+"\n");
-                    text.append("title: "+model.get(i).getTitle()+"\n");
-                    text.append("content: "+model.get(i).getContent()+"\n");
-                    text.append("price: "+model.get(i).getPrice()+"\n");
-                    text.append("writer: "+model.get(i).getWriter()+"\n");
-                    text.append("-----------------------------------\n");
+                    text.append("글이 아무것도 존재하지 않습니다\n");
+                }else{
+                    for (int i = 0; i < model.size(); i++) {
+                        text.append("Id: " + model.get(i).getId() + "\n");
+                        text.append("title: " + model.get(i).getTitle() + "\n");
+                        text.append("content: " + model.get(i).getContent() + "\n");
+                        text.append("price: " + model.get(i).getPrice() + "\n");
+                        text.append("writer: " + model.get(i).getWriter() + "\n");
+                        text.append("-----------------------------------\n");
+                    }
                 }
+
             }
             @Override
             public void onFailure(Call<List<Post>> call, Throwable t) {
@@ -54,6 +63,5 @@ public class frag1 extends Fragment {
             }
         });
         return view;
-
     }
 }

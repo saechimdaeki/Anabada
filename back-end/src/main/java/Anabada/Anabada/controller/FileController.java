@@ -20,6 +20,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 
@@ -46,7 +52,7 @@ public class FileController {
     public UploadFileResponse uploadFile(@PathVariable Long id,@RequestParam("file") MultipartFile file) {
         Post post=postService.getPostById(id);
         AttachmentFile dbFile = attachmentFileService.storeFile(file);
-        dbFile.setPost(post);
+        dbFile.setPostid(id);
         attachmentFileRepository.save(dbFile);
 
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -57,9 +63,11 @@ public class FileController {
         UploadFileResponse tmp=new UploadFileResponse(dbFile.getFileName(), fileDownloadUri,
                 file.getContentType(),post.getId(), file.getSize());
         FileUrl fileUrl = new FileUrl();
-        fileUrl.setPost(post);
         fileUrl.setDownloaduri(fileDownloadUri);
         fileUrl.setFileName(dbFile.getFileName());
+        fileUrl.setPostid(post.getId());
+        fileUrl.setSize(file.getSize());
+        fileUrl.setData(dbFile.getData());
         fileUriRepository.save(fileUrl);
         return tmp;
     }
@@ -81,21 +89,28 @@ public class FileController {
     }
 
     @GetMapping("/post/download/{fileId}")
-    public ResponseEntity<Resource> downloadFile(@PathVariable Long postId,@PathVariable Long fileId) {
-
+    public ResponseEntity<Resource> downloadFile(@PathVariable Long fileId) {
         AttachmentFile dbFile = attachmentFileService.getFile(fileId);
-
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(dbFile.getFileType()))
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + dbFile.getFileName() + "\"")
                 .body(new ByteArrayResource(dbFile.getData()));
     }
 
-
+    /**
+     * postid에 매핑된 fileId값들을 찾기위한 메소드
+     * */
     @GetMapping("/post/{postid}/download")
     public List<FileUrl> getAllFilePost(@PathVariable Long postid){
-        Post post= postService.getPostById(postid);
-        return fileUriRepository.findFileUrlByPost(post);
+        return fileUriRepository.findFileUrlByPostid(postid);
     }
+
+    /**
+     * test
+     */
+
+
+
+
 
 }

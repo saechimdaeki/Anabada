@@ -1,12 +1,17 @@
 package Anabada.Anabada.service;
 
+import Anabada.Anabada.domain.Comment;
+import Anabada.Anabada.domain.FileUrl;
 import Anabada.Anabada.exception.PostNotFoundException;
 import Anabada.Anabada.domain.Post;
+import Anabada.Anabada.repository.CommentRepository;
+import Anabada.Anabada.repository.FileUriRepository;
 import Anabada.Anabada.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,7 +21,8 @@ import java.util.Optional;
 public class PostServiceImpl implements PostService{
 
     private final PostRepository postRepository;
-
+    private final CommentRepository commentRepository;
+    private final FileUriRepository fileUriRepository;
     @Override
     @Transactional
     public Post createPost(Post post) {
@@ -41,8 +47,19 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
+    @Transactional
     public List<Post> getAllPosts() {
-        return this.postRepository.findAll();
+        List<Post> postall= new ArrayList<>();
+
+        for(Post post:postRepository.findAll())
+        {
+            List<Comment> comments= commentRepository.findCommentsByPostid(post.getId());
+            List<FileUrl> files=fileUriRepository.findFileUrlByPostid(post.getId());
+            post.setComments(comments);
+            post.setFiles(files);
+            postall.add(post);
+        }
+        return postall;
     }
 
     @Override
