@@ -20,12 +20,15 @@ public class FileUrl {
     @Column(name = "fileDownloadUri")
     private String downloaduri;
 
-    @ManyToOne
-    @JoinColumn(name = "post_id")
-    private Post post;
 
     @Column(name = "size")
-    private BigInteger size;
+    private long size;
+
+    @Column(name = "postid")
+    private Long postid;
+
+    @Lob
+    private byte[] data;
 
 
 }

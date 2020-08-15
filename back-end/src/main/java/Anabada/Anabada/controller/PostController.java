@@ -1,9 +1,14 @@
 package Anabada.Anabada.controller;
 
 
+import Anabada.Anabada.domain.AttachmentFile;
 import Anabada.Anabada.domain.Comment;
+import Anabada.Anabada.domain.FileUrl;
 import Anabada.Anabada.domain.Post;
+import Anabada.Anabada.repository.AttachmentFileRepository;
 import Anabada.Anabada.repository.CommentRepository;
+import Anabada.Anabada.repository.FileUriRepository;
+import Anabada.Anabada.repository.PostRepository;
 import Anabada.Anabada.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,6 +23,8 @@ public class PostController {
 
     private final PostService postService;
     private final CommentRepository commentRepository;
+    private final FileUriRepository fileUriRepository;
+
 
     @GetMapping("/post")
     public ResponseEntity<List<Post>> getAllPosts(){
@@ -26,14 +33,19 @@ public class PostController {
 
     @PostMapping("/post")
     public ResponseEntity<Post> createPost(@RequestBody Post post){
+      //  List<AttachmentFile> files= attachmentFileRepository.findAllById(getPostById(post.getId()));
+       // attachmentFileRepository.save(attachmentFile);
+
         return ResponseEntity.ok().body(this.postService.createPost(post));
     }
 
     @GetMapping("/post/{id}")
     public Post getPostById(@PathVariable long id){
         List<Comment> comment=commentRepository.findCommentsByPostid(id);
+        List<FileUrl> files= fileUriRepository.findFileUrlByPostid(id);
         Post post=postService.getPostById(id);
         post.setComments(comment);
+        post.setFiles(files);
         return post;
     }
 

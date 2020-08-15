@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,8 +46,10 @@ public class frag2 extends Fragment {
         final EditText editTitle,editWriter,editPrice,editContent;
         TextView textwrite=view.findViewById(R.id.toolbar_write); //완료.
         toolbar=view.findViewById(R.id.write_toolbar);
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         editTitle=view.findViewById(R.id.edit_title);
+
         editWriter=view.findViewById(R.id.edit_writer);
         editPrice=view.findViewById(R.id.eidt_price);
         editContent=view.findViewById(R.id.edit_content);

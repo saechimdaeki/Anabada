@@ -33,16 +33,22 @@ public class Post {
     private String writer;
 
 
-   // @Transient
-    @OneToMany(fetch = FetchType.EAGER)
+    @Transient
+    @OneToMany(fetch = FetchType.LAZY)
     @Column(name = "comments")
     private List<Comment> comments=new ArrayList<>();
 
-    @CreationTimestamp
-   private Date createdDate;
+    @Transient
+    @OneToMany(fetch = FetchType.LAZY)
+    @Column(name = "files")
+    private List<FileUrl> files=new ArrayList<>();
 
-    @CreationTimestamp
-    private Date updateDate;
+
+   // @CreationTimestamp
+   //private Date createdDate;
+
+   // @CreationTimestamp
+   // private Date updateDate;
 
 
 

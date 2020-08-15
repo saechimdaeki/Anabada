@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 public interface AttachmentFileRepository extends JpaRepository<AttachmentFile,Long> {
-    List<AttachmentFile> findFilesByPost(Post post);
+    List<AttachmentFile> findFilesByPostid(Long id);
 
 
 }
