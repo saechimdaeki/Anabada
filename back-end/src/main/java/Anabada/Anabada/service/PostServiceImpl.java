@@ -23,6 +23,7 @@ public class PostServiceImpl implements PostService{
     private final PostRepository postRepository;
     private final CommentRepository commentRepository;
     private final FileUriRepository fileUriRepository;
+
     @Override
     @Transactional
     public Post createPost(Post post) {
@@ -47,7 +48,6 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    @Transactional
     public List<Post> getAllPosts() {
         List<Post> postall= new ArrayList<>();
 
