@@ -20,6 +20,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 
@@ -63,7 +69,9 @@ public class FileController {
         fileUrl.setPostid(post.getId());
         fileUrl.setSize(file.getSize());
         fileUrl.setData(dbFile.getData());
+
         fileUriService.uploadFile(fileUrl);
+
         return tmp;
     }
 
@@ -96,6 +104,7 @@ public class FileController {
      * */
     @GetMapping("/post/{postid}/download")
     public List<FileUrl> getAllFilePost(@PathVariable Long postid){
+
         return fileUriService.findAllFileUrl(postid);
     }
 
@@ -130,6 +139,7 @@ public class FileController {
         fileUriService.updateFile(fileUrl);
         return tmp;
     }
+
 
 
 

@@ -2,6 +2,9 @@ package springboot.juseong.anabada.retrofitModel;
 
 import androidx.annotation.Nullable;
 
+import androidx.annotation.Nullable;
+
+import java.io.File;
 import java.math.BigDecimal;
 import java.util.List;
 

@@ -86,6 +86,7 @@ public class frag1 extends Fragment {
                         postAdapter.notifyDataSetChanged();
                     }
                 }
+
             }
             @Override
             public void onFailure(Call<List<Post>> call, Throwable t) {
