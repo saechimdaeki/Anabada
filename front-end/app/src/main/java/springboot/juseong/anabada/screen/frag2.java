@@ -3,8 +3,6 @@ package springboot.juseong.anabada.screen;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -12,12 +10,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-
-import org.w3c.dom.Text;
 
 import java.math.BigDecimal;
 
@@ -26,7 +21,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import springboot.juseong.anabada.MainActivity;
 import springboot.juseong.anabada.R;
-import springboot.juseong.anabada.dto.Post;
+import springboot.juseong.anabada.retrofitModel.Post;
 import springboot.juseong.anabada.retrofit2.RetrofitFactory;
 import springboot.juseong.anabada.retrofit2.RetrofitService;
 

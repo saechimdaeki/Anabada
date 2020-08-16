@@ -1,4 +1,6 @@
-package springboot.juseong.anabada.dto;
+package springboot.juseong.anabada.retrofitModel;
+
+import androidx.annotation.Nullable;
 
 import androidx.annotation.Nullable;
 
@@ -16,8 +18,18 @@ public class Post {
     @Nullable
     private List<Comment> comments;
 
+    @Nullable
+    private List<FileUrl> files;
 
 
+    @Nullable
+    public List<FileUrl> getFiles() {
+        return files;
+    }
+
+    public void setFiles(@Nullable List<FileUrl> files) {
+        this.files = files;
+    }
 
     @Nullable
     public List<Comment> getComments() {

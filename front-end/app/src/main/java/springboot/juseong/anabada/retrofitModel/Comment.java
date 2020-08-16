@@ -1,4 +1,4 @@
-package springboot.juseong.anabada.dto;
+package springboot.juseong.anabada.retrofitModel;
 
 
 public class Comment {

@@ -7,15 +7,11 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
-import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
-import retrofit2.Call;
-import retrofit2.Response;
-import springboot.juseong.anabada.dto.Post;
 import springboot.juseong.anabada.screen.frag1;
 import springboot.juseong.anabada.screen.frag2;
 import springboot.juseong.anabada.screen.frag3;

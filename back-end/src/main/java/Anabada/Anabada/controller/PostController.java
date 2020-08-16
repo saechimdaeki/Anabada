@@ -10,6 +10,7 @@ import Anabada.Anabada.repository.CommentRepository;
 import Anabada.Anabada.repository.FileUriRepository;
 import Anabada.Anabada.repository.PostRepository;
 import Anabada.Anabada.service.PostService;
+import Anabada.Anabada.service.PostServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PostController {
 
-    private final PostService postService;
+    private final PostServiceImpl postService;
     private final CommentRepository commentRepository;
     private final FileUriRepository fileUriRepository;
 

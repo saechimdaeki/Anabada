@@ -6,8 +6,8 @@ import Anabada.Anabada.domain.FileUrl;
 import Anabada.Anabada.domain.Post;
 import Anabada.Anabada.dto.UploadFileResponse;
 import Anabada.Anabada.repository.AttachmentFileRepository;
-import Anabada.Anabada.repository.FileUriRepository;
 import Anabada.Anabada.service.AttachmentFileService;
+import Anabada.Anabada.service.FileUriService;
 import Anabada.Anabada.service.PostService;
 
 import lombok.RequiredArgsConstructor;
@@ -29,7 +29,7 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 
-import java.util.Optional;
+
 
 import java.util.stream.Collectors;
 
@@ -40,7 +40,8 @@ public class FileController {
 
     private final PostService postService;
     private final AttachmentFileRepository attachmentFileRepository;
-    private final FileUriRepository fileUriRepository;
+    private final FileUriService fileUriService;
+
     /**
      * post id값에 singleFile 업로드
      * @param id
@@ -68,7 +69,9 @@ public class FileController {
         fileUrl.setPostid(post.getId());
         fileUrl.setSize(file.getSize());
         fileUrl.setData(dbFile.getData());
-        fileUriRepository.save(fileUrl);
+
+        fileUriService.uploadFile(fileUrl);
+
         return tmp;
     }
 
@@ -82,7 +85,6 @@ public class FileController {
     @PostMapping("/post/{id}/uploadfiles")
     public List<UploadFileResponse> uploadMultipleFiles(@PathVariable Long id,@RequestParam("file") MultipartFile[] files) {
        Post post=postService.getPostById(id);
-
        return Arrays.stream(files)
                 .map((MultipartFile id1) -> uploadFile(id,id1))
                 .collect(Collectors.toList());
@@ -102,12 +104,42 @@ public class FileController {
      * */
     @GetMapping("/post/{postid}/download")
     public List<FileUrl> getAllFilePost(@PathVariable Long postid){
-        return fileUriRepository.findFileUrlByPostid(postid);
+
+        return fileUriService.findAllFileUrl(postid);
     }
 
+
+
+
     /**
-     * test
+     * post id값에 매핑된 fileid값을 명시적으로 지정하여 해당파일수정
      */
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @PutMapping("/post/{id}/upload/{fileid}")
+    public UploadFileResponse updateFile(@PathVariable Long id,@RequestParam("file") MultipartFile file, @PathVariable Long fileid) {
+        Post post=postService.getPostById(id);
+        AttachmentFile dbFile = attachmentFileService.storeFile(file);
+        dbFile.setPostid(id);
+        attachmentFileRepository.save(dbFile);
+
+        String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("/downloadFile/")
+                .path(dbFile.getId().toString())
+                .toUriString();
+
+        UploadFileResponse tmp=new UploadFileResponse(dbFile.getFileName(), fileDownloadUri,
+                file.getContentType(),post.getId(), file.getSize());
+        FileUrl fileUrl = fileUriService.findbyfileid(fileid).get();
+        fileUrl.setDownloaduri(fileDownloadUri);
+        fileUrl.setFileName(dbFile.getFileName());
+        fileUrl.setPostid(post.getId());
+        fileUrl.setSize(file.getSize());
+        fileUrl.setData(dbFile.getData());
+        fileUriService.updateFile(fileUrl);
+        return tmp;
+    }
+
 
 
 

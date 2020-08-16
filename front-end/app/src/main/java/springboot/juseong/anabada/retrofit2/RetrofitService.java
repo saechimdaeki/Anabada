@@ -7,8 +7,8 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
-import springboot.juseong.anabada.dto.FileUrl;
-import springboot.juseong.anabada.dto.Post;
+import springboot.juseong.anabada.retrofitModel.FileUrl;
+import springboot.juseong.anabada.retrofitModel.Post;
 
 public interface RetrofitService {
     @GET("/post")

@@ -1,8 +1,5 @@
 package springboot.juseong.anabada.screen;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
@@ -12,26 +9,20 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.sql.Blob;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import springboot.juseong.anabada.R;
-import springboot.juseong.anabada.dto.FileUrl;
-import springboot.juseong.anabada.dto.Post;
+import springboot.juseong.anabada.retrofitModel.FileUrl;
+import springboot.juseong.anabada.retrofitModel.Post;
 import springboot.juseong.anabada.retrofit2.RetrofitFactory;
 import springboot.juseong.anabada.retrofit2.RetrofitService;
 
@@ -47,7 +38,6 @@ public class frag3 extends Fragment {
         final View view = inflater.inflate(R.layout.frag3, container, false);
         final TextView text=view.findViewById(R.id.texttest);
         final ImageView imageView=view.findViewById(R.id.testimage);
-        final Bitmap[] bitmapmain = new Bitmap[1];
         RetrofitService retrofitService= RetrofitFactory.create();
        retrofitService.getPostById(1).enqueue(new Callback<Post>() {
            @Override
@@ -71,9 +61,14 @@ public class frag3 extends Fragment {
                List<FileUrl> model=response.body();
                text.append(model.get(0).getFileName()+"\n");
                 byte[] imageByte=Base64.decode(model.get(0).getData(),Base64.DEFAULT);
-                InputStream is=new ByteArrayInputStream(imageByte);
-                Bitmap bitmap=BitmapFactory.decodeStream(is);
-                imageView.setImageBitmap(bitmap);
+                Glide.with(getActivity()).load(imageByte).thumbnail(Glide.with(getActivity()).load(R.drawable.load))
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .fitCenter()
+                        .crossFade()
+                        .into(imageView);
+              // InputStream is=new ByteArrayInputStream(imageByte);
+               // Bitmap bitmap=BitmapFactory.decodeStream(is);
+                //imageView.setImageBitmap(bitmap);
            }
            @Override
            public void onFailure(Call<List<FileUrl>> call, Throwable t) {
