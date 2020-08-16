@@ -22,9 +22,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="#CE93D8"
-        app:itemIconTint="#ffffff"
-        app:itemTextColor="#C62828"
+        android:background="#ffffff"
+        android:padding="8dp"
+        app:itemIconTint="@color/cardview_shadow_start_color"
+        app:itemTextColor="@color/cardview_dark_background"
         app:menu="@menu/bottom" />
 
 </LinearLayout>

@@ -93,25 +93,6 @@ public class frag1 extends Fragment {
                 Log.e("오류",call.request().url().toString());
             }
         });
-        //getData();
-
-
         return view;
-    }
-
-    private void getData(){
-
-        for(int i=0; i<titlelist.size(); i++)
-        {
-            PostModel data=new PostModel();
-            data.setTitle(titlelist.get(i));
-            data.setContent(contentlist.get(i));
-            data.setId(idlist.get(i));
-           // data.setThumbnailImage(datalist.get(i));
-            Log.e("데이터",titlelist.get(i));
-            postAdapter.addItem(data);
-        }
-        postAdapter.notifyDataSetChanged();
-
     }
 }
