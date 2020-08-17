@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface FileUriRepository extends JpaRepository<FileUrl,Long> {
     List<FileUrl> findFileUrlByPostid(Long id);
+
 }

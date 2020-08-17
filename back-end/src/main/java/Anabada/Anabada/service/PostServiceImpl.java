@@ -37,6 +37,7 @@ public class PostServiceImpl implements PostService{
             Post postUpdate=postdb.get();
             postUpdate.setId(post.getId());
             postUpdate.setTitle(post.getTitle());
+            postUpdate.setType(post.getType());
             postUpdate.setContent(post.getContent());
             postRepository.save(postUpdate);
             return postUpdate;
@@ -81,5 +82,13 @@ public class PostServiceImpl implements PostService{
         }else{
             throw new PostNotFoundException("찾지못하였습니다.."+id);
         }
+    }
+
+    public List<Post> getPostByType(String type){
+        return postRepository.findAllByType(type);
+    }
+
+    public Post getPostbyTitle(String title){
+        return postRepository.findByTitle(title);
     }
 }

@@ -7,6 +7,16 @@ public class PostModel {
     private String content;
     private String thumbnailImage;
     private BigDecimal price;
+    private String type;
+    private long id;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public BigDecimal getPrice() {
         return price;
@@ -16,7 +26,7 @@ public class PostModel {
         this.price = price;
     }
 
-    private long id;
+
 
     public String getThumbnailImage() {
         return thumbnailImage;

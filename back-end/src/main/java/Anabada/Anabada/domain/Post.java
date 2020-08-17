@@ -32,6 +32,8 @@ public class Post {
     @Column(name = "writer")
     private String writer;
 
+    @Column(name = "type")
+    private String type;
 
     @Transient
     @OneToMany(fetch = FetchType.LAZY)

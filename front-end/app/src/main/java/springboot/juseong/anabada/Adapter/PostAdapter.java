@@ -56,6 +56,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ItemViewHolder
         private TextView textView3;
         private TextView textViewPrice;
         private ImageView imageView;
+        private TextView textView4;
+
 
         ItemViewHolder(View itemView) {
             super(itemView);
@@ -63,6 +65,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ItemViewHolder
             textView1 = itemView.findViewById(R.id.textView1);
             textView2 = itemView.findViewById(R.id.textView2);
             textView3=itemView.findViewById(R.id.textView3);
+            textView4=itemView.findViewById(R.id.textViewtype);
             textViewPrice=itemView.findViewById(R.id.textViewPrice);
             imageView = itemView.findViewById(R.id.imageView);
         }
@@ -71,6 +74,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ItemViewHolder
             textView2.setText(data.getContent());
             textView3.setText(String.valueOf(data.getId()));
             textViewPrice.append(data.getPrice()+"(원)");
+            textView4.setText(data.getType());
             byte[] imageByte= Base64.decode(data.getThumbnailImage(),Base64.DEFAULT);
             Glide.with(itemView.getContext()).load(imageByte).thumbnail(Glide.with(itemView.getContext()).load(R.drawable.noimage))
         .diskCacheStrategy(DiskCacheStrategy.ALL)

@@ -59,4 +59,15 @@ public class PostController {
         this.postService.deletePost(id);
         return HttpStatus.OK;
     }
+
+    @GetMapping("/post/")
+    public List<Post> gettype(@RequestParam("type") String type){
+        return postService.getPostByType(type);
+    }
+
+    @GetMapping("/post/title")
+    public Post getpost(@RequestParam("title") String title){
+        return postService.getPostbyTitle(title);
+    }
+
 }
