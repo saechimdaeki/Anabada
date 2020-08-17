@@ -47,6 +47,7 @@ public class frag1 extends Fragment {
     List<Long> idlist=new ArrayList<>();
     List<BigDecimal> pricelist=new ArrayList<>();
     List<String> typelist=new ArrayList<>();
+    List<String> writerlist=new ArrayList<>();
     TextView text,spinnertext;
     EditText editText;
     ImageView search;
@@ -90,7 +91,6 @@ public class frag1 extends Fragment {
             }
         });
 
-        getAllPost();
         editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
@@ -109,6 +109,11 @@ public class frag1 extends Fragment {
     }
 
     private void getAllPost(){
+        linearLayoutManager =new LinearLayoutManager(getActivity());
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        postAdapter=new PostAdapter();
+        recyclerView.setAdapter(postAdapter);
         retrofitService.getAllPosts().enqueue(new Callback<List<Post>>() {
             @Override
             public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
@@ -128,6 +133,7 @@ public class frag1 extends Fragment {
                         else{
                             datalist.add(model.get(i).getFiles().get(0).getData()); //썸네일
                         }
+                        writerlist.add(model.get(i).getWriter());
                         pricelist.add(model.get(i).getPrice());
                         idlist.add(model.get(i).getId());
                         typelist.add(model.get(i).getType());
@@ -138,6 +144,7 @@ public class frag1 extends Fragment {
                         data.setType(typelist.get(i));
                         data.setThumbnailImage(datalist.get(i));
                         data.setPrice(pricelist.get(i));
+                        data.setWriter(writerlist.get(i));
                         postAdapter.addItem(data);
                         postAdapter.notifyDataSetChanged();
                     }
@@ -152,6 +159,11 @@ public class frag1 extends Fragment {
 
 
     private void clickSerach(){
+        linearLayoutManager =new LinearLayoutManager(getActivity());
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        postAdapter=new PostAdapter();
+        recyclerView.setAdapter(postAdapter);
         InputMethodManager mInputMethodManager = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
 
         mInputMethodManager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
@@ -172,6 +184,7 @@ public class frag1 extends Fragment {
                     data.setTitle(model.getTitle());
                     data.setType(model.getType());
                     data.setPrice(model.getPrice());
+                    data.setWriter(model.getWriter());
                     if(model.getFiles().size()==0) {
                         data.setThumbnailImage(String.valueOf(R.string.noimage));
                     }
@@ -206,6 +219,7 @@ public class frag1 extends Fragment {
                     List<Long> idsearch=new ArrayList<>();
                     List<BigDecimal> pricesearch=new ArrayList<>();
                     List<String> typesearch=new ArrayList<>();
+                    List<String> writersearch=new ArrayList<>();
                     if(model.size()==0){
                         Toast.makeText(getActivity(), "검색에 대한 정보가 1도없습니다!", Toast.LENGTH_SHORT).show();
                     }else{
@@ -219,12 +233,14 @@ public class frag1 extends Fragment {
                             else{
                                 datasearch.add(model.get(i).getFiles().get(0).getData()); //썸네일
                             }
+                            writersearch.add(model.get(i).getWriter());
                             pricesearch.add(model.get(i).getPrice());
                             idsearch.add(model.get(i).getId());
                             typesearch.add(model.get(i).getType());
                             data.setTitle(titlesearch.get(i));
                             data.setContent(contensearch.get(i));
                             data.setId(idsearch.get(i));
+                            data.setWriter(writersearch.get(i));
                             data.setType(typesearch.get(i));
                             data.setThumbnailImage(datasearch.get(i));
                             data.setPrice(pricesearch.get(i));
@@ -233,7 +249,6 @@ public class frag1 extends Fragment {
                         }
                     }
                 }
-
                 @Override
                 public void onFailure(Call<List<Post>> call, Throwable t) {
 

@@ -85,10 +85,22 @@ public class PostServiceImpl implements PostService{
     }
 
     public List<Post> getPostByType(String type){
-        return postRepository.findAllByType(type);
+        List<Post> posts= postRepository.findAllByType(type);
+        for(Post post:posts){
+            List<Comment> comments=commentRepository.findCommentsByPostid(post.getId());
+            List<FileUrl> files=fileUriRepository.findFileUrlByPostid(post.getId());
+            post.setComments(comments);
+            post.setFiles(files);
+        }
+        return posts;
     }
 
     public Post getPostbyTitle(String title){
-        return postRepository.findByTitle(title);
+        Post post= postRepository.findByTitle(title);
+        List<Comment> comments= commentRepository.findCommentsByPostid(post.getId());
+        List<FileUrl> fileUrls= fileUriRepository.findFileUrlByPostid(post.getId());
+        post.setComments(comments);
+        post.setFiles(fileUrls);
+        return post;
     }
 }

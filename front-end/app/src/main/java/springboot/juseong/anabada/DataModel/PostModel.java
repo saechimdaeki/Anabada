@@ -9,6 +9,15 @@ public class PostModel {
     private BigDecimal price;
     private String type;
     private long id;
+    private String writer;
+
+    public String getWriter() {
+        return writer;
+    }
+
+    public void setWriter(String writer) {
+        this.writer = writer;
+    }
 
     public String getType() {
         return type;

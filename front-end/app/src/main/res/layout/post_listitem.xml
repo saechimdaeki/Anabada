@@ -43,7 +43,16 @@
             android:textSize="13dp"
             android:textColor="@android:color/black"
             android:textStyle="bold"/>
-
+        <TextView
+            android:layout_marginTop="6dp"
+            android:id="@+id/textViewwriter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:text="글쓴이: "
+            android:textSize="13dp"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"/>
         <TextView
             android:id="@+id/textViewtype"
             android:layout_width="match_parent"

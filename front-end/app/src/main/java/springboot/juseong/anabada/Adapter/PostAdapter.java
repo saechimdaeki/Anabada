@@ -57,7 +57,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ItemViewHolder
         private TextView textViewPrice;
         private ImageView imageView;
         private TextView textView4;
-
+        private TextView textwriter;
 
         ItemViewHolder(View itemView) {
             super(itemView);
@@ -67,6 +67,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ItemViewHolder
             textView3=itemView.findViewById(R.id.textView3);
             textView4=itemView.findViewById(R.id.textViewtype);
             textViewPrice=itemView.findViewById(R.id.textViewPrice);
+            textwriter=itemView.findViewById(R.id.textViewwriter);
             imageView = itemView.findViewById(R.id.imageView);
         }
         void onBind(PostModel data) {
@@ -75,6 +76,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ItemViewHolder
             textView3.setText(String.valueOf(data.getId()));
             textViewPrice.append(data.getPrice()+"(원)");
             textView4.setText(data.getType());
+            textwriter.setText(data.getWriter());
             byte[] imageByte= Base64.decode(data.getThumbnailImage(),Base64.DEFAULT);
             Glide.with(itemView.getContext()).load(imageByte).thumbnail(Glide.with(itemView.getContext()).load(R.drawable.noimage))
         .diskCacheStrategy(DiskCacheStrategy.ALL)
