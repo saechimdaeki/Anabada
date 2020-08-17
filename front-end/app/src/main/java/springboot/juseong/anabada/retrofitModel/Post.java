@@ -14,6 +14,15 @@ public class Post {
     private String content;
     private BigDecimal price;
     private String writer;
+    private String type;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     @Nullable
     private List<Comment> comments;
