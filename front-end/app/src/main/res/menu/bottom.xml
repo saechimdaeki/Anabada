@@ -16,7 +16,7 @@
         android:id="@+id/action_test"
         android:enabled="true"
         android:icon="@drawable/ic_assignment_ind_black_24dp"
-        android:title="테스트환경"/>
+        android:title="마이페이지"/>
 
         />
 

@@ -2,12 +2,14 @@ package springboot.juseong.anabada.retrofit2;
 
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import springboot.juseong.anabada.retrofitModel.Account;
 import springboot.juseong.anabada.retrofitModel.FileUrl;
 import springboot.juseong.anabada.retrofitModel.Post;
 
@@ -33,5 +35,11 @@ public interface RetrofitService {
     Call<Post> getPostByTitle(
             @Query("title") String title
     );
+
+    @POST("/register")
+    Call<ResponseBody> createAccount(@Body Account account);
+
+    @POST("/login")
+    Call<ResponseBody> loginAccount(@Body Account account);
 
 }

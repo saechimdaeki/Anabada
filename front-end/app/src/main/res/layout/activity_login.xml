@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".screen.regist.loginActivity">
+
+
+    <TextView
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="아나바다"
+        android:fontFamily="@font/soojin"
+        android:layout_gravity="center_horizontal"
+        android:textSize="30dp"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        />
+    <TextView
+        android:layout_marginTop="11dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:fontFamily="@font/mapellight"
+        android:text="아껴쓰고 나눠쓰고 바꿔쓰고 다시쓰자"
+
+        android:gravity="center_horizontal" />
+
+    <EditText
+        android:layout_marginTop="100dp"
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/prompt_email"
+        android:inputType="textEmailAddress"
+        android:selectAllOnFocus="true"
+        />
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+      android:layout_margin="10dp"
+        android:hint="username"
+        android:inputType="textEmailAddress"
+        android:selectAllOnFocus="true"
+        />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="@string/prompt_password"
+        android:imeActionLabel="@string/action_sign_in_short"
+        android:imeOptions="actionDone"
+        android:inputType="textPassword"
+        android:selectAllOnFocus="true"
+      />
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/autologin"
+        android:layout_width="wrap_content"
+        android:fontFamily="@font/maplebold"
+        android:layout_margin="10dp"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:text="자동로그인"/>
+    <Button
+        android:layout_marginTop="40dp"
+        android:id="@+id/signin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:clickable="true"
+        android:fontFamily="@font/maplebold"
+        android:text="회원가입"
+        />
+    <Button
+        android:layout_marginTop="10dp"
+        android:id="@+id/login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:clickable="true"
+        android:fontFamily="@font/maplebold"
+        android:text="로그인"
+     />
+
+    <ProgressBar
+        android:id="@+id/loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+         />
+</LinearLayout>

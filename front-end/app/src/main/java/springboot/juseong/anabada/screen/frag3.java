@@ -1,13 +1,18 @@
 package springboot.juseong.anabada.screen;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -25,8 +30,10 @@ import springboot.juseong.anabada.retrofitModel.FileUrl;
 import springboot.juseong.anabada.retrofitModel.Post;
 import springboot.juseong.anabada.retrofit2.RetrofitFactory;
 import springboot.juseong.anabada.retrofit2.RetrofitService;
+import springboot.juseong.anabada.screen.regist.loginActivity;
 
 public class frag3 extends Fragment {
+    Button buttonlogout;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,45 +43,20 @@ public class frag3 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.frag3, container, false);
-        final TextView text=view.findViewById(R.id.texttest);
-        final ImageView imageView=view.findViewById(R.id.testimage);
-        RetrofitService retrofitService= RetrofitFactory.create();
-       retrofitService.getPostById(1).enqueue(new Callback<Post>() {
-           @Override
-           public void onResponse(Call<Post> call, Response<Post> response) {
-               Post model=response.body();
-               text.append(model.getComments().get(0).getTitle()+"\n");
-
-           }
-
-           @Override
-           public void onFailure(Call<Post> call, Throwable t) {
-
-           }
-       });
-
-       retrofitService.getAllFile(1L).enqueue(new Callback<List<FileUrl>>() {
-           @Override
-           public void onResponse(Call<List<FileUrl>> call, Response<List<FileUrl>> response) {
-
-               Log.e("성공",call.request().url().toString());
-               List<FileUrl> model=response.body();
-               text.append(model.get(0).getFileName()+"\n");
-                byte[] imageByte=Base64.decode(model.get(0).getData(),Base64.DEFAULT);
-                Glide.with(getActivity()).load(imageByte).thumbnail(Glide.with(getActivity()).load(R.drawable.load))
-                        .diskCacheStrategy(DiskCacheStrategy.ALL)
-                        .fitCenter()
-                        .crossFade()
-                        .into(imageView);
-              // InputStream is=new ByteArrayInputStream(imageByte);
-               // Bitmap bitmap=BitmapFactory.decodeStream(is);
-                //imageView.setImageBitmap(bitmap);
-           }
-           @Override
-           public void onFailure(Call<List<FileUrl>> call, Throwable t) {
-               Log.e("오류",call.request().url().toString());
-           }
-       });
+        buttonlogout=view.findViewById(R.id.logout);
+        buttonlogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences auto=getActivity().getSharedPreferences("auto", Activity.MODE_PRIVATE);
+                SharedPreferences.Editor editor=auto.edit();
+                editor.clear();
+                editor.apply();
+                Toast.makeText(getActivity(), "로그아웃완료!", Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(getActivity(), loginActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
 
         return view;
     }
