@@ -15,6 +15,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class AttachmentFileService {
     private final AttachmentFileRepository attachmentFileRepository;
+
     public AttachmentFile storeFile(MultipartFile file) {
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         try {

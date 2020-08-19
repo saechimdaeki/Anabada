@@ -39,4 +39,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'com.google.android.material:material:1.2.0'
+    implementation 'me.relex:circleindicator:2.1.4'
+    implementation 'me.everything:overscroll-decor-android:1.1.0'
+    implementation 'com.github.Shashank02051997:FancyGifDialog-Android:1.2'
+
 }

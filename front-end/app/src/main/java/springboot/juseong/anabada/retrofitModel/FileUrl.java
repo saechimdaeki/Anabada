@@ -8,8 +8,8 @@ public class FileUrl {
     private String downloaduri;
     private long size;
     private Long postid;
-
     private String data;
+
 
     public Long getId() {
         return id;
@@ -56,6 +56,12 @@ public class FileUrl {
     }
 
     public void setData(String data) {
+        this.data = data;
+    }
+
+    public FileUrl(String fileName, Long postid, String data) {
+        this.fileName = fileName;
+        this.postid = postid;
         this.data = data;
     }
 }

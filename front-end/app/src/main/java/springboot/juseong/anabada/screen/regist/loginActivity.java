@@ -65,7 +65,6 @@ public class loginActivity extends AppCompatActivity {
             }
         });
     }
-
     private void siginin(){
         if(emailText.getText().toString().equals("")||usernameText.getText().toString().equals("")||passwordText.getText().toString().equals(""))
             Toast.makeText(loginActivity.this, "누락된 요소가 있다능!", Toast.LENGTH_SHORT).show();
@@ -76,6 +75,7 @@ public class loginActivity extends AppCompatActivity {
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     String model= null;
                     try {
+                        if(response.body()!=null)
                         model = response.body().string();
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -83,7 +83,7 @@ public class loginActivity extends AppCompatActivity {
                     if(model.equals("성공"))
                         Toast.makeText(loginActivity.this, "회원가입 성공 이제로그인해봅시다", Toast.LENGTH_SHORT).show();
                     else
-                        Toast.makeText(loginActivity.this, "이미 등록된 이름입니다", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(loginActivity.this, "이미 등록되거나 개발자가 서버를 내려서 문제가있습니다", Toast.LENGTH_SHORT).show();
                 }
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
@@ -102,26 +102,29 @@ public class loginActivity extends AppCompatActivity {
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     String model= null;
                     try {
+                        if(response.body()!=null)
                         model = response.body().string();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    if(model.equals("성공")) {
-                        if(checkBox.isChecked())
-                        {
-                            SharedPreferences auto=getSharedPreferences("auto",Activity.MODE_PRIVATE);
-                            SharedPreferences.Editor autoLogin=auto.edit();
-                            autoLogin.putString("inputemail",email);
-                            autoLogin.putString("inputuser",username);
-                            autoLogin.putString("inputpwd",pwd);
-                            autoLogin.apply();
+                    if(model!=null) {
+                        if (model.equals("성공")) {
+                            if (checkBox.isChecked()) {
+                                SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
+                                SharedPreferences.Editor autoLogin = auto.edit();
+                                autoLogin.putString("inputemail", email);
+                                autoLogin.putString("inputuser", username);
+                                autoLogin.putString("inputpwd", pwd);
+                                autoLogin.apply();
+                            }
+                            MainActivity.globalUsername = username;
+                            Toast.makeText(loginActivity.this, "아나바다에 오신것을 환영합니다" + username + "님", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(loginActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            Toast.makeText(loginActivity.this, "저런 로그인 실팹니다!", Toast.LENGTH_SHORT).show();
                         }
-                        Toast.makeText(loginActivity.this, "아나바다에 오신것을 환영합니다" + username + "님", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(loginActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }else{
-                        Toast.makeText(loginActivity.this, "저런 로그인 실팹니다!", Toast.LENGTH_SHORT).show();
                     }
                 }
                 @Override

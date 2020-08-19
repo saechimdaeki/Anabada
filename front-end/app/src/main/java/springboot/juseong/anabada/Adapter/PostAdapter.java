@@ -76,8 +76,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ItemViewHolder
             textView3.setText(String.valueOf(data.getId()));
             textViewPrice.append(data.getPrice()+"(원)");
             textView4.setText(data.getType());
-            textwriter.setText(data.getWriter());
+            textwriter.setText("글쓴이: "+data.getWriter());
             byte[] imageByte= Base64.decode(data.getThumbnailImage(),Base64.DEFAULT);
+
             Glide.with(itemView.getContext()).load(imageByte).thumbnail(Glide.with(itemView.getContext()).load(R.drawable.noimage))
         .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .fitCenter()

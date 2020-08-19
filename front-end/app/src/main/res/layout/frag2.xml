@@ -10,7 +10,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/write_toolbar"
             android:layout_width="match_parent"
@@ -45,7 +44,23 @@
                 />
 
         </androidx.appcompat.widget.Toolbar>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/camera"
+                android:id="@+id/write_post_gallery"
+                />
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/recycler_file"/>
 
+        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -82,22 +97,21 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/category"
                 android:textColor="#000000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="작성자 이름:" />
+                android:text="분류:" />
 
-            <EditText
-                android:id="@+id/edit_writer"
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/write_spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
-                android:textColor="#000000"
-                android:textColorHint="#808080"
-                android:hint="작성자 닉네임을 입력해주세요"
-                android:lines="1"
-                android:maxLines="1" />
+                android:background="#6200EA"
+                android:backgroundTint="@color/cardview_shadow_start_color"
+                android:entries="@array/writetype" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -151,6 +165,11 @@
                 android:textColor="#000000"
                 android:textColorHint="#808080"
                 android:maxLines="7" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/test"
+                />
         </LinearLayout>
     </LinearLayout>
 
