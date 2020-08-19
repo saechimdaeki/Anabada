@@ -3,7 +3,7 @@
 #### 아껴쓰고 나눠쓰고 바꿔쓰고 다시쓰자
 
 ---
-### 해당프로젝트의의 개발진행과정은 [블로그](https://anima94.blog.me/222060738558)에서 볼 수 있으며 매일 발전해가는 모습을 볼수있습니다.
+### 해당프로젝트의의 개발진행과정은 [블로그](http://blog.naver.com/PostSearchList.nhn?blogId=anima94&categoryNo=0&SearchText=anabada&orderBy=date&range=all)에서 볼 수 있으며 매일 발전해가는 모습을 볼수있습니다.
 
 
 ### `How the frontend and backend exchange information`
