@@ -6,7 +6,13 @@
         <item>판매</item>
         <item>교환</item>
         <item>구매</item>
+    </string-array>
 
+    <string-array name="writetype">
+        <item>기부</item>
+        <item>판매</item>
+        <item>교환</item>
+        <item>구매</item>
     </string-array>
 
 </resources>

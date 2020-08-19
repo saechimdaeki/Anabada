@@ -1,13 +1,18 @@
 package Anabada.Anabada.service;
 
+import Anabada.Anabada.domain.AttachmentFile;
 import Anabada.Anabada.domain.FileUrl;
+import Anabada.Anabada.exception.FileStorageException;
 import Anabada.Anabada.exception.PostNotFoundException;
 import Anabada.Anabada.repository.FileUriRepository;
 import Anabada.Anabada.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,13 +49,14 @@ public class FileUriService {
             fileUpdate.setSize(fileUrl.getSize());
             fileUpdate.setPostid(fileUrl.getPostid());
             fileUpdate.setFileName(fileUrl.getFileName());
-
             fileUriRepository.save(fileUpdate);
             return fileUpdate;
         }else{
             throw new PostNotFoundException("찾지못하였습니다.. "+fileUrl.getId());
         }
     }
+
+
 
 
 }

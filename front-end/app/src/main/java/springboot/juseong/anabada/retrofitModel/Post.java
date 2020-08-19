@@ -91,10 +91,11 @@ public class Post {
         this.writer = writer;
     }
 
-    public Post(String title, String content, BigDecimal price, String writer) {
+    public Post(String title, String content, BigDecimal price, String writer,String type) {
         this.title = title;
         this.content = content;
         this.price = price;
         this.writer = writer;
+        this.type=type;
     }
 }

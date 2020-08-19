@@ -50,30 +50,26 @@ public class FileController {
      */
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/post/{id}/upload")
-    public UploadFileResponse uploadFile(@PathVariable Long id,@RequestParam("file") MultipartFile file) {
+    public FileUrl uploadFile(@PathVariable Long id,@RequestParam("file") MultipartFile file) {
         Post post=postService.getPostById(id);
         AttachmentFile dbFile = attachmentFileService.storeFile(file);
         dbFile.setPostid(id);
         attachmentFileRepository.save(dbFile);
-
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/downloadFile/")
                 .path(dbFile.getId().toString())
                 .toUriString();
 
-        UploadFileResponse tmp=new UploadFileResponse(dbFile.getFileName(), fileDownloadUri,
-                file.getContentType(),post.getId(), file.getSize());
         FileUrl fileUrl = new FileUrl();
         fileUrl.setDownloaduri(fileDownloadUri);
         fileUrl.setFileName(dbFile.getFileName());
         fileUrl.setPostid(post.getId());
         fileUrl.setSize(file.getSize());
         fileUrl.setData(dbFile.getData());
-
         fileUriService.uploadFile(fileUrl);
-
-        return tmp;
+        return fileUrl;
     }
+
 
     /**
      * postid에 파일들이 매칭되게설정.
@@ -83,7 +79,7 @@ public class FileController {
      */
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/post/{id}/uploadfiles")
-    public List<UploadFileResponse> uploadMultipleFiles(@PathVariable Long id,@RequestParam("file") MultipartFile[] files) {
+    public List<FileUrl> uploadMultipleFiles(@PathVariable Long id,@RequestParam("file") MultipartFile[] files) {
        Post post=postService.getPostById(id);
        return Arrays.stream(files)
                 .map((MultipartFile id1) -> uploadFile(id,id1))
@@ -107,9 +103,6 @@ public class FileController {
 
         return fileUriService.findAllFileUrl(postid);
     }
-
-
-
 
     /**
      * post id값에 매핑된 fileid값을 명시적으로 지정하여 해당파일수정
