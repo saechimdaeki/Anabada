@@ -1,18 +1,17 @@
-package springboot.juseong.anabada.retrofitModel;
+package springboot.juseong.anabada.DataModel;
 
-
-public class Comment {
+public class CommentModel {
     private Long id;
     private String title;
     private String content;
     private String writer;
     private Long postid;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -40,18 +39,11 @@ public class Comment {
         this.writer = writer;
     }
 
-    public long getPostid() {
+    public Long getPostid() {
         return postid;
     }
 
-    public void setPostid(long postid) {
-        this.postid = postid;
-    }
-
-    public Comment(String title, String content, String writer, Long postid) {
-        this.title = title;
-        this.content = content;
-        this.writer = writer;
+    public void setPostid(Long postid) {
         this.postid = postid;
     }
 }

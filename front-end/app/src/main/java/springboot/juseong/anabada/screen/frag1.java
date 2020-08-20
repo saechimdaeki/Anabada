@@ -23,6 +23,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -256,4 +258,9 @@ public class frag1 extends Fragment {
             });
         }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+    }
 }

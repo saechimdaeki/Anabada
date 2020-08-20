@@ -9,12 +9,6 @@
     android:layout_marginRight="2dp"
     android:background="@drawable/circle">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="150dp"
-        android:layout_height="200dp"
-        android:src="@mipmap/ic_launcher"/>
-
     <LinearLayout
         android:layout_width="0dp"
         android:layout_marginLeft="15dp"
@@ -26,43 +20,34 @@
         <TextView
             android:fontFamily="@font/maplebold"
             android:layout_marginTop="7dp"
-            android:id="@+id/textView1"
+            android:id="@+id/commenttitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
             android:text="TITLE"
+            android:visibility="gone"
             android:textSize="15dp"
             android:textColor="@android:color/black"
             android:textStyle="bold"/>
-        <TextView
-            android:fontFamily="@font/mapellight"
-            android:layout_marginTop="6dp"
-            android:id="@+id/textViewPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:includeFontPadding="false"
-            android:text="가격: "
-            android:textSize="13dp"
-            android:textColor="@android:color/black"
-            android:textStyle="bold"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-        <TextView
-            android:fontFamily="@font/maplebold"
-            android:layout_marginTop="6dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:includeFontPadding="false"
-            android:text="글쓴이: "
-            android:textSize="13dp"
-            android:textColor="@android:color/black"
-            android:textStyle="bold"/>
             <TextView
                 android:fontFamily="@font/maplebold"
                 android:layout_marginTop="6dp"
-                android:id="@+id/textViewwriter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="글쓴이: "
+                android:textSize="13dp"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"/>
+            <TextView
+                android:fontFamily="@font/maplebold"
+                android:layout_marginTop="6dp"
+                android:id="@+id/commentwriter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:includeFontPadding="false"
@@ -72,21 +57,8 @@
                 android:textStyle="bold"/>
         </LinearLayout>
         <TextView
-            android:fontFamily="@font/soojin"
-            android:id="@+id/textViewtype"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:background="@drawable/textcircle"
-            android:gravity="center_horizontal"
-            android:includeFontPadding="false"
-            android:textAlignment="center"
-            android:textColor="#DD2C00"
-            android:textSize="20dp"
-            android:textStyle="bold" />
-        <TextView
             android:fontFamily="@font/mapellight"
-            android:id="@+id/textView2"
+            android:id="@+id/commentcontent"
             android:layout_marginTop="9dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -97,7 +69,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView3"
+            android:id="@+id/commentid"
+            android:visibility="gone"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/commentpostid"
             android:visibility="gone"
             />
     </LinearLayout>

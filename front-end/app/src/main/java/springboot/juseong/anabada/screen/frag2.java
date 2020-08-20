@@ -24,6 +24,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -195,11 +196,11 @@ public class frag2 extends Fragment {
             retrofitService.uploadfiles(postid,body).enqueue(new Callback<FileUrl>() {
                 @Override
                 public void onResponse(Call<FileUrl> call, Response<FileUrl> response) {
-                    Log.e("성공",call.request().url().toString());
+                   // Log.e("성공",call.request().url().toString());
                 }
                 @Override
                 public void onFailure(Call<FileUrl> call, Throwable t) {
-                    Log.e("오류",call.request().url().toString());
+                  // Log.e("오류",call.request().url().toString());
                 }
             });
 
@@ -223,6 +224,10 @@ public class frag2 extends Fragment {
         return tempFile.getAbsolutePath();
     }
 
+    public void refreshFragment(){
+        FragmentTransaction ft=getChildFragmentManager().beginTransaction();
+        ft.detach(this).attach(this).commit();
+    }
 
 
 }

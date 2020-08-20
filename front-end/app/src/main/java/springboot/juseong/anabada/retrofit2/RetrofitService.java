@@ -6,6 +6,7 @@ import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -13,6 +14,7 @@ import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import springboot.juseong.anabada.retrofitModel.Account;
+import springboot.juseong.anabada.retrofitModel.Comment;
 import springboot.juseong.anabada.retrofitModel.FileUrl;
 import springboot.juseong.anabada.retrofitModel.Post;
 
@@ -25,6 +27,9 @@ public interface RetrofitService {
 
     @GET("/post/{postid}")
     Call<Post> getPostById(@Path("postid") long id);
+
+
+
 
     @GET("/post/{postid}/download")
     Call<List<FileUrl>> getAllFile(@Path("postid") Long postid);
@@ -47,9 +52,21 @@ public interface RetrofitService {
 
     @Multipart
     @POST("/post/{postid}/upload")
-    Call<FileUrl> uploadfiles (@Path("postid") long id,@Part MultipartBody.Part file);
+    Call<FileUrl> uploadfiles(@Path("postid") long id, @Part MultipartBody.Part file);
 
     @Multipart
     @POST("/post/{id}/uploadfiles")
-    Call<List<FileUrl>> uploadmultifiles (@Path("postid") long id,@Part MultipartBody.Part... file);
+    Call<List<FileUrl>> uploadmultifiles(@Path("postid") long id, @Part MultipartBody.Part... file);
+
+    @DELETE("/post/{id}")
+    Call<String> deletePost(@Path("id") long id);
+
+    @GET("/post/{postid}/download")
+    Call<List<FileUrl>> findAllfileByPostid(@Path("postid") Long postid);
+
+    @POST("/post/{postid}/comment")
+    Call<Comment> createComment(@Path("postid") Long postid ,@Body Comment comment);
+
+    @GET("/post/{postid}/comment")
+    Call<List<Comment>> getallcomment(@Path("postid") Long postid);
 }
