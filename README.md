@@ -23,7 +23,7 @@
 </details>
 
 ---
-## Running petclinic locally
+## Running Anabada locally
 Anabada is a [Spring Boot](https://spring.io/guides/gs/spring-boot) application built using [Gradle](https://spring.io/guides/gs/gradle/). 
 
 ## The [h2](https://h2database.com/h2-2019-03-13.zip) database must be executed before performing the following command.
