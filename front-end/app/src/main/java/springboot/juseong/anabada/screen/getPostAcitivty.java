@@ -120,7 +120,6 @@ public class getPostAcitivty extends AppCompatActivity {
             }
         });
     }
-
     private void commenthanging(){
         if(editcomment.getText().toString().equals(""))
             Toast.makeText(getPostAcitivty.this, "댓글을 입력하세요!!!!", Toast.LENGTH_SHORT).show();
@@ -139,8 +138,7 @@ public class getPostAcitivty extends AppCompatActivity {
             });
         }
     }
-
-    private void getcommentlist(){
+    public void getcommentlist(){
         commentManager=new LinearLayoutManager(this);
         commentrecycle.setHasFixedSize(true);
         commentrecycle.setLayoutManager(commentManager);

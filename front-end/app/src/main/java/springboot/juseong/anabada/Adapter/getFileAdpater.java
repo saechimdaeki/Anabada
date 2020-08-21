@@ -21,6 +21,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import springboot.juseong.anabada.DataModel.FileModel;
 import springboot.juseong.anabada.DataModel.getFileModel;
 import springboot.juseong.anabada.R;
+import springboot.juseong.anabada.screen.ZoomPicActivity;
+import springboot.juseong.anabada.screen.getPostAcitivty;
 
 public class getFileAdpater extends RecyclerView.Adapter<getFileAdpater.ItemViewHolder> {
     private ArrayList<getFileModel> listData=new ArrayList<>();
@@ -31,12 +33,16 @@ public class getFileAdpater extends RecyclerView.Adapter<getFileAdpater.ItemView
         return new getFileAdpater.ItemViewHolder(view);
     }
     @Override
-    public void onBindViewHolder(@NonNull getFileAdpater.ItemViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final getFileAdpater.ItemViewHolder holder, final int position) {
         holder.onBind(listData.get(position));
         holder.mview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO
+                final Context context=view.getContext();
+                final Intent intent;
+                intent=new Intent(context, ZoomPicActivity.class);
+                intent.putExtra("data",holder.imagedata.getText().toString());
+                context.startActivity(intent);
             }
         });
     }
@@ -52,18 +58,20 @@ public class getFileAdpater extends RecyclerView.Adapter<getFileAdpater.ItemView
     static class ItemViewHolder extends RecyclerView.ViewHolder {
         private View mview;
         private CircleImageView image;
-        private TextView postid,id;
+        private TextView postid,id,imagedata;
         ItemViewHolder(View itemView) {
             super(itemView);
             mview=itemView;
             postid=itemView.findViewById(R.id.filepostid);
             id=itemView.findViewById(R.id.fileid);
             image=itemView.findViewById(R.id.file_image);
+            imagedata=itemView.findViewById(R.id.imagedata);
         }
 
         void onBind(getFileModel data) {
             postid.setText(String.valueOf(data.getPostid()));
             id.setText(String.valueOf(data.getId()));
+            imagedata.setText(data.getData());
             byte[] imageByte= Base64.decode(data.getData(),Base64.DEFAULT);
             Glide.with(itemView.getContext()).load(imageByte).error(R.drawable.noimage)
                     .fitCenter()

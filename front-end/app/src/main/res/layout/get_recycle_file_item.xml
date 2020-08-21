@@ -25,6 +25,12 @@
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:src="@mipmap/ic_launcher" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            android:id="@+id/imagedata"
+            />
 
     </RelativeLayout>
 

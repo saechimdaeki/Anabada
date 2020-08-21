@@ -69,4 +69,7 @@ public interface RetrofitService {
 
     @GET("/post/{postid}/comment")
     Call<List<Comment>> getallcomment(@Path("postid") Long postid);
+
+    @DELETE("/post/{id}/comment/{commentid}")
+    Call<String> deleteComment(@Path("id") Long id, @Path("commentid") Long commentid);
 }
