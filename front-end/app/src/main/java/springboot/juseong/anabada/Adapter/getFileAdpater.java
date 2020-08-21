@@ -41,7 +41,8 @@ public class getFileAdpater extends RecyclerView.Adapter<getFileAdpater.ItemView
                 final Context context=view.getContext();
                 final Intent intent;
                 intent=new Intent(context, ZoomPicActivity.class);
-                intent.putExtra("data",holder.imagedata.getText().toString());
+                byte[] imageByte= Base64.decode(holder.imagedata.getText().toString(),Base64.DEFAULT);
+                intent.putExtra("data",imageByte);
                 context.startActivity(intent);
             }
         });

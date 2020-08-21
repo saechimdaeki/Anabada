@@ -20,8 +20,8 @@ public class ZoomPicActivity extends AppCompatActivity {
         imageView=findViewById(R.id.circleimageviewzoom);
         Intent intent=getIntent();
 
-        byte[] imageByte= Base64.decode(intent.getStringExtra("data"),Base64.DEFAULT);
-        Glide.with(this).load(imageByte).error(R.drawable.noimage)
+       // byte[] imageByte= Base64.decode(intent.getStringExtra("data"),Base64.DEFAULT);
+        Glide.with(this).load(intent.getByteArrayExtra("data")).error(R.drawable.noimage)
                 .fitCenter()
                 .crossFade()
                 .into(imageView);

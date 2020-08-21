@@ -1,11 +1,12 @@
 # Anabada
-#### front-end :Android , backend:Spring  
-#### 아껴쓰고 나눠쓰고 바꿔쓰고 다시쓰자
+### front-end: Android , backend: Spring  
+### A project that provides services to buy and sell unused used goods.
+### 아껴쓰고 나눠쓰고 바꿔쓰고 다시쓰자
 
 ---
 ### 해당프로젝트의의 개발진행과정은 [블로그](http://blog.naver.com/PostSearchList.nhn?blogId=anima94&categoryNo=0&SearchText=anabada&orderBy=date&range=all)에서 볼 수 있으며 매일 개발 기록을 볼수있습니다.
-##### `물건을 사거나 팔거나 바꿀수있는 프로젝트입니다.` 
-#### `(프로젝트의 설명에 사용된 예시는 주제와 달리 연예인의 사진을 사용하였습니다)`
+#### `물건을 사거나 팔거나 바꿀수있는 프로젝트입니다.` 
+
 
 ### `How the frontend and backend exchange information`
 ![image](https://user-images.githubusercontent.com/40031858/90135086-18994500-ddad-11ea-8e44-236c88e6d5f9.png)
@@ -38,7 +39,7 @@ java -jar target/*.jar
 ex)java -jar Anabada-0.0.1-SNAPSHOT.jar
 ```
 
-### Once the above process is finished, you can launch the Android app in the frontend folder.:bee: 
+#### Once the above process is finished, you can launch the Android app in the frontend folder:bee: 
 
 
 ## backend directory structure
@@ -159,26 +160,28 @@ For building and running the application you need:
 ---
 
 
-```
 
-```
 
 ### Let's look at some simple functions. (addpost, deletepost ,real-time comments , imageZoom ) 
-#### ( ※ The image used is a project to buy and sell products, although it used pictures of celebrities. ※ )
-
-
-![post](https://user-images.githubusercontent.com/40031858/90849825-28b3b480-e3ab-11ea-99a6-9f6680c71edf.gif)
-
-![글삭제](https://user-images.githubusercontent.com/40031858/90849398-1b49fa80-e3aa-11ea-8016-72f275f5d8ec.gif)
-
-![댓글달기](https://user-images.githubusercontent.com/40031858/90849438-3583d880-e3aa-11ea-8290-d76f1c029e9d.gif)
 
 
 
-![댓글삭제](https://user-images.githubusercontent.com/40031858/90849113-81824d80-e3a9-11ea-8fa1-84064e84eae8.gif)
+![1](https://user-images.githubusercontent.com/40031858/90912481-a2808800-e415-11ea-8bb6-bf53c9ad1937.gif)
 
 
-![루다이미지](https://user-images.githubusercontent.com/40031858/90849086-6c0d2380-e3a9-11ea-8267-63eb47d9ab19.gif)
+![2](https://user-images.githubusercontent.com/40031858/90912525-b926df00-e415-11ea-85b7-07679e34110e.gif)
+
+
+![3](https://user-images.githubusercontent.com/40031858/90912565-c93ebe80-e415-11ea-8aef-1aa22702303c.gif)
+
+
+
+
+![4](https://user-images.githubusercontent.com/40031858/90912662-f3907c00-e415-11ea-9d98-908eecd889d2.gif)
+
+
+![5](https://user-images.githubusercontent.com/40031858/90912667-f4291280-e415-11ea-8a16-ff4dae330119.gif)
+
 
 
 #### Detailed functions can be viewed [here](http://blog.naver.com/PostSearchList.nhn?blogId=anima94&categoryNo=0&SearchText=anabada&orderBy=date&range=all) or directly through the program.
