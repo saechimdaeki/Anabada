@@ -4,7 +4,7 @@
 
 ---
 ### 해당프로젝트의의 개발진행과정은 [블로그](http://blog.naver.com/PostSearchList.nhn?blogId=anima94&categoryNo=0&SearchText=anabada&orderBy=date&range=all)에서 볼 수 있으며 매일 개발 기록을 볼수있습니다.
-
+##### `물건을 사거나 팔거나 바꿀수있는 프로젝트입니다. (하지만 프로젝트의 설명에 사용된 예시는 주제와 달리 연예인의 사진을 사용하였습니다)`
 
 ### `How the frontend and backend exchange information`
 ![image](https://user-images.githubusercontent.com/40031858/90135086-18994500-ddad-11ea-8e44-236c88e6d5f9.png)
