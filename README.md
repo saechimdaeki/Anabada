@@ -39,6 +39,114 @@ ex)java -jar Anabada-0.0.1-SNAPSHOT.jar
 
 ### Once the above process is finished, you can launch the Android app in the frontend folder.:bee: 
 
+
+## backend directory structure
+```
+---src
+    +---main
+    |   +---generated
+    |   +---java
+    |   |   \---Anabada
+    |   |       \---Anabada
+    |   |           |   AnabadaApplication.java
+    |   |           |
+    |   |           +---controller
+    |   |           |       CommentController.java
+    |   |           |       FileController.java
+    |   |           |       PostController.java
+    |   |           |       RegistController.java
+    |   |           |       TestController.java
+    |   |           |
+    |   |           +---domain
+    |   |           |       Account.java
+    |   |           |       AttachmentFile.java
+    |   |           |       Comment.java
+    |   |           |       FileUrl.java
+    |   |           |       Member.java
+    |   |           |       Post.java
+    |   |           |
+    |   |           +---dto
+    |   |           |       AccountDto.java
+    |   |           |       UploadFileResponse.java
+    |   |           |
+    |   |           +---exception
+    |   |           |       FileStorageException.java
+    |   |           |       MyFileNotFoundException.java
+    |   |           |       PostNotFoundException.java
+    |   |           |
+    |   |           +---repository
+    |   |           |       AccountRepository.java
+    |   |           |       AttachmentFileRepository.java
+    |   |           |       CommentRepository.java
+    |   |           |       FileUriRepository.java
+    |   |           |       PostRepository.java
+    |   |           |
+    |   |           +---secret
+    |   |           |       Hashing.java
+    |   |           |
+    |   |           \---service
+    |   |                   AccountService.java
+    |   |                   AttachmentFileService.java
+    |   |                   CommentService.java
+    |   |                   FileUriService.java
+    |   |                   PostService.java
+    |   |                   PostServiceImpl.java
+    |   |
+    |   \---resources
+    |       |   application.yml
+    |       |
+    |       +---static
+    |       \---templates
+
+```
+
+## frontend directory structure
+```
+-main
+|       |   |   AndroidManifest.xml
+|       |   |
+|       |   +---java
+|       |   |   \---springboot
+|       |   |       \---juseong
+|       |   |           \---anabada
+|       |   |               |   MainActivity.java
+|       |   |               |   Secret.java
+|       |   |               |
+|       |   |               +---Adapter
+|       |   |               |       commentAdpater.java
+|       |   |               |       FileAdapter.java
+|       |   |               |       getFileAdpater.java
+|       |   |               |       PostAdapter.java
+|       |   |               |
+|       |   |               +---DataModel
+|       |   |               |       CommentModel.java
+|       |   |               |       FileModel.java
+|       |   |               |       getFileModel.java
+|       |   |               |       PostModel.java
+|       |   |               |
+|       |   |               +---retrofit2
+|       |   |               |       RetrofitFactory.java
+|       |   |               |       RetrofitService.java
+|       |   |               |
+|       |   |               +---retrofitModel
+|       |   |               |       Account.java
+|       |   |               |       Comment.java
+|       |   |               |       FileUrl.java
+|       |   |               |       Post.java
+|       |   |               |
+|       |   |               \---screen
+|       |   |                   |   frag1.java
+|       |   |                   |   frag2.java
+|       |   |                   |   frag3.java
+|       |   |                   |   getPostAcitivty.java
+|       |   |                   |   Loading.java
+|       |   |                   |   ZoomPicActivity.java
+|       |   |                   |
+|       |   |                   \---regist
+|       |   |                           loginActivity.java
+
+```
+
 ## Requirements
 
 For building and running the application you need:
@@ -49,13 +157,31 @@ For building and running the application you need:
 
 ---
 
-### Let's look at some simple functions. (deletepost and real-time comments)
-![image](https://postfiles.pstatic.net/MjAyMDA4MjBfMTYz/MDAxNTk3OTE4MTg1NDQy.ur93Lqf725E2gNP5dqphBHOzAWNE8ly0yoIqynl6WKEg.gvejUs5EPUUUfzPYeuwxoTeHVFblb_tbcbBW5yN5JxYg.GIF.anima94/포스팅삭제.gif)
-![image](https://postfiles.pstatic.net/MjAyMDA4MjBfMTU0/MDAxNTk3OTE4NTgzMDQ5.EV4jGOydbj99qga3Z18SI8i8VxgPYI2g8grgsqDSZEkg.t_HXQv8Yj36rHogwnmNXgDe7a2GE-6QHAmONc9yVb0gg.GIF.anima94/댓글.gif)
+
+```
+
+```
+
+### Let's look at some simple functions. (addpost, deletepost ,real-time comments , imageZoom )
+
+
+![post](https://user-images.githubusercontent.com/40031858/90849825-28b3b480-e3ab-11ea-99a6-9f6680c71edf.gif)
+
+![글삭제](https://user-images.githubusercontent.com/40031858/90849398-1b49fa80-e3aa-11ea-8016-72f275f5d8ec.gif)
+
+![댓글달기](https://user-images.githubusercontent.com/40031858/90849438-3583d880-e3aa-11ea-8290-d76f1c029e9d.gif)
+
+
+
+![댓글삭제](https://user-images.githubusercontent.com/40031858/90849113-81824d80-e3a9-11ea-8fa1-84064e84eae8.gif)
+
+
+![루다이미지](https://user-images.githubusercontent.com/40031858/90849086-6c0d2380-e3a9-11ea-8267-63eb47d9ab19.gif)
+
 
 #### Detailed functions can be viewed [here](http://blog.naver.com/PostSearchList.nhn?blogId=anima94&categoryNo=0&SearchText=anabada&orderBy=date&range=all) or directly through the program.
 
-
+---
 ## 📝 License
 This project is released under the MIT license.
 See [LICENSE](./LICENSE) for details.
