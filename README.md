@@ -162,7 +162,8 @@ For building and running the application you need:
 
 ```
 
-### Let's look at some simple functions. (addpost, deletepost ,real-time comments , imageZoom )
+### Let's look at some simple functions. (addpost, deletepost ,real-time comments , imageZoom ) 
+#### ( ※ The image used is a project to buy and sell products, although it used pictures of celebrities. ※ )
 
 
 ![post](https://user-images.githubusercontent.com/40031858/90849825-28b3b480-e3ab-11ea-99a6-9f6680c71edf.gif)
