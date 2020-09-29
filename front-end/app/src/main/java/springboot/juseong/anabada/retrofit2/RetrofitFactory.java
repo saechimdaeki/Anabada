@@ -5,8 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class RetrofitFactory {
-    private static String BASE_URL= "http://192.168.35.135:8080/";
-    //Secret.myIp;
+    private static String BASE_URL= "YourIpAdress!!!!!! ";
     public static RetrofitService create(){
         Retrofit retrofit=new Retrofit.Builder().baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create()).build();
