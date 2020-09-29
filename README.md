@@ -31,15 +31,32 @@ Anabada is a [Spring Boot](https://spring.io/guides/gs/spring-boot) application 
 #### (JDBC URL: jdbc:h2:tcp://localhost/~/anabada , username : sa)
 
 ```
-git clone https://github.com/saechimdaeki/Anabada.git
-cd backend
-./gradle build
-cd build\libs
-java -jar target/*.jar
+1. git clone https://github.com/saechimdaeki/Anabada.git
+2. cd backend
+3. ./gradle build
+4. cd build\libs
+5. java -jar target/*.jar
 ex)java -jar Anabada-0.0.1-SNAPSHOT.jar
 ```
 
-#### Once the above process is finished, you can launch the Android app in the frontend folder:bee: 
+#### Once the above process is finished, you can launch the Android app in the frontend folder:bee:
+```
+1.open the Android Studio
+2.open proejct front-end And gradle Sync
+3. Goto RetrofitFactory.class And enter YourIPAddress with PortNumber
+
+public class RetrofitFactory {
+    private static String BASE_URL= "YourIpAdress!!!!!! ";
+    public static RetrofitService create(){
+        Retrofit retrofit=new Retrofit.Builder().baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create()).build();
+        return retrofit.create(RetrofitService.class);
+    }
+
+}
+4. Launch App (h2 and spring must be in execution state.)
+
+```
 
 
 ## backend directory structure
